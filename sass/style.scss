@@ -1,3 +1,7 @@
+/*
+  Main File
+*/
+
 * {
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -8,9 +12,14 @@ body, html {
   font-size: 62.5%;
   overflow: hidden;
 }
-h1, h2, h3, h4, p {
-  font-size: 1.6rem;
+main {
+  padding: 10%;
 }
+
+/*
+  Typography
+*/
+
 .txt--title {
   font-weight: 900;
   font-size: 3.2rem;
@@ -18,7 +27,4 @@ h1, h2, h3, h4, p {
 }
 .txt--thin {
   font-weight: 100;
-}
-main {
-  padding: 10%;
 }

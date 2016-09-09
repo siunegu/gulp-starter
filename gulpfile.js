@@ -8,7 +8,34 @@ var gulp = require('gulp'),
     webserver = require('gulp-webserver'),
     zip = require('gulp-zip');
 
+gulp.task('vendor-js', function () {
+  gulp.src([
+        'node_modules/bluebird/browser/bluebird.min.js',
+        'node_modules/jquery/dist/jquery.slim.min.js'
+      ])
+      .pipe(concat('vendor.min.js'))
+      .pipe(uglify())
+      .pipe(gulp.dest('build/'))
+      .pipe(notify({
+          message: 'Finished minifying vendor scripts'
+      }));
+});
+
+gulp.task('vendor-css', function () {
+  gulp.src([
+        'node_modules/bootstrap/scss/**/*.scss'
+      ])
+      .pipe(sass())
+      .pipe(minify())
+      .pipe(concat('vendor.css'))
+      .pipe(gulp.dest('build/'))
+      .pipe(notify({
+          message: 'Finished minifying vendor styles'
+      }));
+});
+
 gulp.task('js', function () {
+
     gulp.src(['js/**/*.js'])
         .pipe(concat('scripts.min.js'))
         .pipe(uglify())
@@ -50,4 +77,4 @@ gulp.task('zip', function() {
    .pipe(gulp.dest('dist'));
 });
 
-gulp.task('default', ['watch', 'html', 'js', 'sass', 'zip', 'webserver']);
+gulp.task('default', ['watch', 'html', 'vendor-css', 'vendor-js', 'js', 'sass', 'zip', 'webserver']);
