@@ -46,7 +46,7 @@ gulp.task('webserver', function () {
 
 gulp.task('zip', function() {
  return gulp.src('build/*')
-   .pipe(zip('Asana_projects.zip'))
+   .pipe(zip('gulp_starter.zip'))
    .pipe(gulp.dest('dist'));
 });
 
