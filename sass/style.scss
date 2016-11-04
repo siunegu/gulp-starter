@@ -6,12 +6,14 @@
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
 }
+
 body, html {
   box-sizing: border-box;
   margin: 0;
   font-size: 62.5%;
   overflow: hidden;
 }
+
 main {
   padding: 10%;
 }
@@ -28,3 +30,7 @@ main {
 .txt--thin {
   font-weight: 100;
 }
+
+/*
+  Styles
+*/

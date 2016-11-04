@@ -7,12 +7,15 @@ var gulp = require('gulp'),
     minify = require('gulp-minify-css'),
     webserver = require('gulp-webserver'),
     imagemin = require('gulp-imagemin'),
+    babel = require('gulp-babel'),
+    sourcemaps = require('gulp-sourcemaps'),
     zip = require('gulp-zip');
 
 gulp.task('vendor-js', function () {
   gulp.src([
         'node_modules/bluebird/browser/bluebird.min.js',
-        'node_modules/jquery/dist/jquery.slim.min.js'
+        'node_modules/jquery/dist/jquery.slim.min.js',
+        'node_modules/gsap/src/minified/**/*.js'
       ])
       .pipe(concat('vendor.min.js'))
       .pipe(uglify())
@@ -38,6 +41,10 @@ gulp.task('vendor-css', function () {
 gulp.task('js', function () {
 
     gulp.src(['js/**/*.js'])
+        .pipe(sourcemaps.init())
+        .pipe(babel({
+          presets: ["babel-preset-es2015", "babel-preset-es2016", "babel-preset-es2017"].map(require.resolve)
+        }))
         .pipe(concat('scripts.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest('build/'))
